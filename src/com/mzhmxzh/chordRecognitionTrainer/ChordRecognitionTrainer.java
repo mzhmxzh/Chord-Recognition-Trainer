@@ -47,7 +47,7 @@ class ChordRecognitionTrainer {
 		playGuessChord.addActionListener(new PlayChordListener(guessChord));
 		JButton makeGuess = new JButton("go");
 		makeGuess.addActionListener(ignored -> {
-			String rightAnswer = guessChord.getName();
+			String rightAnswer = guessChord.getWholeName();
 			if (userGuess.getText().equals(rightAnswer)) {
 				tipLabel.setText("You are right");
 			} else {
@@ -57,7 +57,9 @@ class ChordRecognitionTrainer {
 		JButton nextButton = new JButton("next");
 		nextButton.addActionListener(ignored -> {
 			tipLabel.setText("for example, 'C_Major' or 'Bf_Augmented'");
-			guessChord = helper.generateRandomChord();
+			Chord newGuessChord = helper.generateRandomChord();
+			guessChord.setName(newGuessChord.getName());
+			guessChord.setRoot(newGuessChord.getRoot());
 			userGuess.setText("");
 		});
 
@@ -68,7 +70,7 @@ class ChordRecognitionTrainer {
 		JLabel userGuessLabel = new JLabel();
 		userGuessLabel.setText("I guess it's a");
 		tipLabel = new JLabel();
-		tipLabel.setText("for example, 'C_Major' or 'Bf_Augmented'");
+		tipLabel.setText("for example, 'C_MAJOR' or 'Bf_AUGMENTED'");
 
 		userGuess = new JTextField(15);
 
@@ -104,7 +106,7 @@ class ChordRecognitionTrainer {
 
 		@Override
 		public void actionPerformed(ActionEvent ignored) {
-			Sequence seq = chord.makeSound();
+			Sequence seq = chord.makeSequence();
 			try {
 				sequencer.setSequence(seq);
 			} catch (InvalidMidiDataException e) {

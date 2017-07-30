@@ -7,9 +7,26 @@ public class Chord {
 	private String root;
 	private Name name;
 
-	public String getName() {
+	public String getWholeName() {
 		return root + "_" + name;
 	}
+
+	public Name getName(){
+	    return name;
+    }
+
+    public String getRoot(){
+	    return root;
+    }
+
+
+	public void setName(Name name){
+	    this.name = name;
+    }
+
+    public void setRoot(String root){
+	    this.root = root;
+    }
 
 	public Chord(String root, Name name) {
 		this.root = root;
@@ -25,9 +42,9 @@ public class Chord {
 		int start = 0;
 		int end = 10;
 		MidiEvent[][] events = new MidiEvent[2][];
-		int key = (int) root.charAt(0) - 19;
+		int key = (int) root.charAt(0) - 7;
 		if (root.length() > 1) {
-			if (root.charAt(2) == 's') {
+			if (root.charAt(1) == 's') {
 				key++;
 			} else {
 				key--;
@@ -43,7 +60,7 @@ public class Chord {
 		return events;
 	}
 
-	public Sequence makeSound() {
+	public Sequence makeSequence() {
 		Sequence seq = null;
 		try {
 			seq = new Sequence(Sequence.PPQ, 4);
@@ -56,6 +73,7 @@ public class Chord {
 			}
 		} catch (Exception e) {
 			System.out.println("Can't get sequence");
+			e.printStackTrace();
 		}
 		return seq;
 	}
