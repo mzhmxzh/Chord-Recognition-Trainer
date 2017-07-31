@@ -3,7 +3,7 @@ package com.mzhmxzh.chordRecognitionTrainer;
 import java.util.Random;
 
 public class Helper {
-	private static String[] notes = new String[]{"C", "Cs", "D", "Ds", "E", "F", "Fs", "G", "Gs", "A", "As", "B"};
+	private static String[] notes = new String[]{"C", "C_SHARP", "D", "D_SHARP", "E", "F", "F_SHARP", "G", "G_SHARP", "A", "A_SHARP", "B"};
 
 	public Chord generateRandomChord() {
 		Random random = new Random();

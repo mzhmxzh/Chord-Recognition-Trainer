@@ -1,11 +1,37 @@
 package com.mzhmxzh.chordRecognitionTrainer;
 
 import javax.sound.midi.*;
+import java.util.HashMap;
 
 public class Chord {
 
 	private String root;
 	private Name name;
+
+	private static HashMap<String, Integer> notes = new HashMap<String, Integer>();
+
+	static{
+		notes.put("A",57);
+		notes.put("A_SHARP",58);
+		notes.put("B_FLAT",58);
+		notes.put("B",59);
+		notes.put("B_SHARP",60);
+		notes.put("C_FLAT",59);
+		notes.put("C",60);
+		notes.put("C_SHARP",61);
+		notes.put("D_FLAT",61);
+		notes.put("D",62);
+		notes.put("D_SHARP",63);
+		notes.put("E_FLAT",63);
+		notes.put("E",64);
+		notes.put("E_SHARP",65);
+		notes.put("F_FLAT",64);
+		notes.put("F",65);
+		notes.put("F_SHARP",66);
+		notes.put("G_FLAT",66);
+		notes.put("G",67);
+		notes.put("G_SHARP",68);
+	}
 
 	public String getWholeName() {
 		return root + "_" + name;
@@ -42,14 +68,7 @@ public class Chord {
 		int start = 0;
 		int end = 10;
 		MidiEvent[][] events = new MidiEvent[2][];
-		int key = (int) root.charAt(0) - 7;
-		if (root.length() > 1) {
-			if (root.charAt(1) == 's') {
-				key++;
-			} else {
-				key--;
-			}
-		}
+		int key = notes.get(root);
 		int[] intervals = name.intervals;
 		events[0] = new MidiEvent[intervals.length];
 		events[1] = new MidiEvent[intervals.length];

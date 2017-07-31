@@ -56,7 +56,7 @@ class ChordRecognitionTrainer {
 		});
 		JButton nextButton = new JButton("next");
 		nextButton.addActionListener(ignored -> {
-			tipLabel.setText("for example, 'C_Major' or 'Bf_Augmented'");
+			tipLabel.setText("for example, 'C_MAJOR' or 'B_FLAT_AUGMENTED'");
 			Chord newGuessChord = helper.generateRandomChord();
 			guessChord.setName(newGuessChord.getName());
 			guessChord.setRoot(newGuessChord.getRoot());
@@ -70,7 +70,7 @@ class ChordRecognitionTrainer {
 		JLabel userGuessLabel = new JLabel();
 		userGuessLabel.setText("I guess it's a");
 		tipLabel = new JLabel();
-		tipLabel.setText("for example, 'C_MAJOR' or 'Bf_AUGMENTED'");
+		tipLabel.setText("for example, 'C_MAJOR' or 'B_FLAT_AUGMENTED'");
 
 		userGuess = new JTextField(15);
 
